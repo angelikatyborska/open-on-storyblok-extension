@@ -8,10 +8,11 @@
     "96": "icons/logo-96.png"
   },
 
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"],
-      "js": ["index.js"]
-    }
-  ]
+  "permissions": ["activeTab"],
+
+  "browser_action": {
+    "default_icon": "icons/logo-32.png",
+    "default_title": "Storyblok Tools",
+    "default_popup": "popup/index.html"
+  }
 }
