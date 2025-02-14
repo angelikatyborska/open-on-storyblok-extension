@@ -2,17 +2,26 @@
   "manifest_version": 2,
   "name": "Storyblok Tools",
   "version": "1.0",
-  "description": "Adds a red border to all webpages matching mozilla.org.",
   "icons": {
     "48": "icons/logo-48.png",
     "96": "icons/logo-96.png"
   },
 
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "storage"],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{210572df-12a0-415c-8abf-69d03f59c47f}"
+    }
+  },
 
   "browser_action": {
     "default_icon": "icons/logo-32.png",
     "default_title": "Storyblok Tools",
     "default_popup": "popup/index.html"
+  },
+
+  "options_ui": {
+    "page": "options/index.html"
   }
 }
