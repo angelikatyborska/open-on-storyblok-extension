@@ -11,9 +11,21 @@ function saveOptions(e) {
     }
   })
 
+  const saveStatus = document.querySelector('#save-status')
+
   browser.storage.sync.set({
     spaces: mapped
-  });
+  })
+    .then(() => {
+      saveStatus.textContent = 'Saved!'
+    })
+    .catch(() => {
+      saveStatus.textContent = 'Error. Try again.'
+    });
+
+  setTimeout(() => {
+    saveStatus.textContent = ''
+  }, 3000)
 }
 
 function restoreOptions() {

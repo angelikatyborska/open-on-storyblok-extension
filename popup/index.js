@@ -17,6 +17,13 @@ currentSettingPromise.then((result) => {
   const wrapper = document.querySelector('#spaces')
   const template = document.querySelector('#space')
 
+  if (!result.spaces || result.spaces.length === 0) {
+    const template = document.querySelector('#no-spaces')
+    const clone = template.content.cloneNode(true);
+    wrapper.appendChild(clone);
+    return;
+  }
+
   result.spaces.forEach(space => {
     if (!space.id || !space.name || !space.accessToken) { return }
     const clone = template.content.cloneNode(true);
@@ -40,6 +47,7 @@ currentSettingPromise.then((result) => {
         if (response.status === 200) {
           response.json().then(body => {
             const link = document.createElement('a')
+            link.setAttribute('target', '_blank')
             link.setAttribute('href', `https://app.storyblok.com/#/me/spaces/${space.id}/stories/0/0/${body.story.id}`)
             link.textContent = 'open story on Storyblok'
             linkWrapper.textContent = ''
