@@ -3,30 +3,44 @@ currentTabPromise.then((tabs) => {
 
   try {
     const url = new URL(tabs[0].url);
-    const linkWrapper = document.querySelector('#story-link-wrapper')
-    linkWrapper.setAttribute('data-story-slug', url.pathname)
-    document.querySelector('#current-tab-slug').textContent = url.pathname
+    const currentSlug  = document.querySelector('#current-tab-slug')
+    currentSlug.textContent = url.pathname
+    currentSlug.setAttribute("data-story-slug", url.pathname)
   } catch (e) {
     console.error(e)
   }
 })
 
-let currentSettingPromise = browser.storage.sync.get("space");
+let currentSettingPromise = browser.storage.sync.get("spaces");
 
 currentSettingPromise.then((result) => {
-  document.querySelector('#space-id').textContent = result.space?.id;
-  document.querySelector('#space-name').textContent = result.space?.name;
+  const wrapper = document.querySelector('#spaces')
+  const template = document.querySelector('#space')
 
-  if (result.space?.accessToken) {
-    const linkWrapper = document.querySelector('#story-link-wrapper')
-    const storySlug = linkWrapper.getAttribute('data-story-slug')
-    const apiRequestUrl = 'https://api.storyblok.com/v2/cdn/stories' + storySlug + '?token=' + result.space?.accessToken;
+  result.spaces.forEach(space => {
+    if (!space.id || !space.name || !space.accessToken) { return }
+    const clone = template.content.cloneNode(true);
 
-    fetch(apiRequestUrl, { headers: { 'Accept': 'application/json' }}).then(response => {
-      if (response.status === 200) {
+    const idValue = clone.querySelector(".space-id")
+    idValue.textContent = space.id;
+
+    const nameValue = clone.querySelector(".space-name")
+    nameValue.textContent = space.name;
+
+    const linkWrapper = clone.querySelector('.story-link-wrapper')
+
+    wrapper.appendChild(clone);
+
+    if (space.accessToken) {
+      const storySlug = document.querySelector('#current-tab-slug').getAttribute('data-story-slug')
+      const apiRequestUrl = 'https://api.storyblok.com/v2/cdn/stories' + storySlug + '?token=' + space.accessToken;
+
+      // TODO: special handling for root story
+      fetch(apiRequestUrl, { headers: { 'Accept': 'application/json' }}).then(response => {
+        if (response.status === 200) {
           response.json().then(body => {
             const link = document.createElement('a')
-            link.setAttribute('href', `https://app.storyblok.com/#/me/spaces/${result.space?.id}/stories/0/0/${body.story.id}`)
+            link.setAttribute('href', `https://app.storyblok.com/#/me/spaces/${space.id}/stories/0/0/${body.story.id}`)
             link.textContent = 'open story on Storyblok'
             linkWrapper.textContent = ''
             linkWrapper.appendChild(link)
@@ -34,9 +48,10 @@ currentSettingPromise.then((result) => {
             linkWrapper.textContent = 'error'
             console.error('json error', e)
           })
-      } else {
-        linkWrapper.textContent = 'Storyblok story not found'
-      }
-    }).catch(e => console.error('fetch error', e))
-  }
+        } else {
+          linkWrapper.textContent = 'Storyblok story not found'
+        }
+      }).catch(e => console.error('fetch error', e))
+    }
+  })
 });

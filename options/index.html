@@ -12,15 +12,22 @@
 <body>
 <form>
   <h2>Space</h2>
-  <div>
-    <label>Name <input type="text" id="space-name" name="name" /></label>
+  <div id="spaces">
   </div>
-  <div>
-    <label>ID <input type="text" id="space-id" name="id" /></label>
-  </div>
-  <div>
-    <label>Access token <input type="password" id="space-access-token" name="access-token" /></label>
-  </div>
+
+  <template id="space-form-template">
+    <div>
+      <div>
+        <label>Name <input type="text" name="name" /></label>
+      </div>
+      <div>
+        <label>ID <input type="text" name="id" /></label>
+      </div>
+      <div>
+        <label>Access token <input type="password" name="accessToken" /></label>
+      </div>
+    </div>
+  </template>
   <button type="submit">Save</button>
 </form>
 
