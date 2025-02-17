@@ -2,17 +2,39 @@
 <html>
 <head>
   <meta charset="utf-8" />
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 10px;
+      border: 1px solid gray;
+    }
+  </style>
 </head>
 
 <body>
 <h1>Story</h1>
 <p id="current-tab-slug">(loading...)</p>
 <h2>Spaces</h2>
-<div id="spaces"></div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Id</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody id="spaces"></tbody>
+</table>
 <template id="space">
-  <p class="space-name"></p>
-  <p class="space-id"></p>
-  <p class="story-link-wrapper">(loading...)</p>
+  <tr>
+    <td class="space-name"></td>
+    <td class="space-id"></td>
+    <td class="story-link-wrapper">(loading...)</td>
+  </tr>
 </template>
 </body>
 

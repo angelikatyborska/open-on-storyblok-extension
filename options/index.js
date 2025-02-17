@@ -17,34 +17,56 @@ function saveOptions(e) {
 }
 
 function restoreOptions() {
+  function appendSpace(space, index) {
+    const wrapper = document.querySelector('#spaces');
+    const template = document.querySelector('#space-form-template')
+    const clone = template.content.cloneNode(true);
+
+    const idInput = clone.querySelector("[name='id']")
+    idInput.value = space.id;
+    idInput.name = `spaces[${index}].id`
+
+    const nameInput = clone.querySelector("[name='name']")
+    nameInput.value = space.name;
+    nameInput.name = `spaces[${index}].name`
+
+    const accessTokenInput = clone.querySelector("[name='accessToken']")
+    accessTokenInput.value = space.accessToken;
+    accessTokenInput.name = `spaces[${index}].accessToken`
+
+    const deleteButton = clone.querySelector('.delete-space')
+    deleteButton.addEventListener('click', deleteSpace)
+
+    wrapper.appendChild(clone);
+  }
+
+  function deleteSpace(event) {
+    const spaceNode = event.target.closest('.space')
+    spaceNode.parentElement.removeChild(spaceNode)
+  }
+
   function setCurrentChoice(result) {
-    if (result?.space) {
-      const wrapper = document.querySelector('#spaces');
-      const template = document.querySelector('#space-form-template')
-      const clone = template.content.cloneNode(true);
-
-      const idInput = clone.querySelector("[name='id']")
-      idInput.value = result.space.id;
-      idInput.name = 'spaces[0].id'
-
-      const nameInput = clone.querySelector("[name='name']")
-      nameInput.value = result.space.name;
-      nameInput.name = 'spaces[0].name'
-
-
-      const accessTokenInput = clone.querySelector("[name='accessToken']")
-      accessTokenInput.value = result.space.accessToken;
-      accessTokenInput.name = 'spaces[0].accessToken'
-
-      wrapper.appendChild(clone);
+    if (result?.spaces) {
+      result.spaces.forEach((space, index) => {
+        appendSpace(space, index)
+      })
     }
+
+    const addSpaceButton = document.querySelector('#add-space')
+    addSpaceButton.addEventListener('click', addNewSpace)
   }
 
   function onError(error) {
     console.log(`Error: ${error}`);
   }
 
-  let getting = browser.storage.sync.get("space");
+  function addNewSpace() {
+    const wrapper = document.querySelector('#spaces');
+    const index = wrapper.children.length;
+    appendSpace({ id: '', name: '', accessToken: '' }, index)
+  }
+
+  let getting = browser.storage.sync.get("spaces");
   getting.then(setCurrentChoice, onError);
 }
 

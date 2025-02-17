@@ -6,17 +6,23 @@
     body {
       padding: 10px;
     }
+
+    .spaces {
+      display: grid;
+      grid-row-gap: 20px;
+      margin-bottom: 50px;
+    }
   </style>
 </head>
 
 <body>
 <form>
-  <h2>Space</h2>
-  <div id="spaces">
+  <h2>Spaces</h2>
+  <div id="spaces" class="spaces">
   </div>
 
   <template id="space-form-template">
-    <div>
+    <div class="space">
       <div>
         <label>Name <input type="text" name="name" /></label>
       </div>
@@ -26,8 +32,12 @@
       <div>
         <label>Access token <input type="password" name="accessToken" /></label>
       </div>
+      <div>
+        <button class="delete-space">Delete</button>
+      </div>
     </div>
   </template>
+  <button type="button" id="add-space">Add space</button>
   <button type="submit">Save</button>
 </form>
 
