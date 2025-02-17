@@ -39,10 +39,14 @@ currentSettingPromise.then((result) => {
     wrapper.appendChild(clone);
 
     if (space.accessToken) {
-      const storySlug = document.querySelector('#current-tab-slug').getAttribute('data-story-slug')
+      let storySlug = document.querySelector('#current-tab-slug').getAttribute('data-story-slug')
+
+      if (storySlug === "/" && space.rootStorySlug) {
+        storySlug = space.rootStorySlug
+      }
+
       const apiRequestUrl = 'https://api.storyblok.com/v2/cdn/stories' + storySlug + '?token=' + space.accessToken;
 
-      // TODO: special handling for root story
       fetch(apiRequestUrl, { headers: { 'Accept': 'application/json' }}).then(response => {
         if (response.status === 200) {
           response.json().then(body => {

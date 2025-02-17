@@ -8,6 +8,7 @@ function saveOptions(e) {
       id: formData.get(`spaces[${i}].id`),
       name: formData.get(`spaces[${i}].name`),
       accessToken: formData.get(`spaces[${i}].accessToken`),
+      rootStorySlug: formData.get(`spaces[${i}].rootStorySlug`),
     }
   })
 
@@ -35,16 +36,20 @@ function restoreOptions() {
     const clone = template.content.cloneNode(true);
 
     const idInput = clone.querySelector("[name='id']")
-    idInput.value = space.id;
+    idInput.value = space.id || '';
     idInput.name = `spaces[${index}].id`
 
     const nameInput = clone.querySelector("[name='name']")
-    nameInput.value = space.name;
+    nameInput.value = space.name || '';
     nameInput.name = `spaces[${index}].name`
 
     const accessTokenInput = clone.querySelector("[name='accessToken']")
-    accessTokenInput.value = space.accessToken;
+    accessTokenInput.value = space.accessToken || '';
     accessTokenInput.name = `spaces[${index}].accessToken`
+
+    const rootStorySlugInput = clone.querySelector("[name='rootStorySlug']")
+    rootStorySlugInput.value = space.rootStorySlug || '';
+    rootStorySlugInput.name = `spaces[${index}].rootStorySlug`
 
     const deleteButton = clone.querySelector('.delete-space')
     deleteButton.addEventListener('click', deleteSpace)
