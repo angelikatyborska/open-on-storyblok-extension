@@ -45,7 +45,7 @@ currentSettingPromise.then((result) => {
         storySlug = space.rootStorySlug
       }
 
-      const apiRequestUrl = 'https://api.storyblok.com/v2/cdn/stories' + storySlug + '?token=' + space.accessToken;
+      const apiRequestUrl = 'https://api.storyblok.com/v2/cdn/stories' + storySlug + '?version=draft&token=' + space.accessToken;
 
       fetch(apiRequestUrl, { headers: { 'Accept': 'application/json' }}).then(response => {
         if (response.status === 200) {
