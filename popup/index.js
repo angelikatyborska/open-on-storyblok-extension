@@ -48,7 +48,8 @@ currentSettingPromise.then((result) => {
       const apiRequestUrl = 'https://api.storyblok.com/v2/cdn/stories' + storySlug + '?version=draft&token=' + space.accessToken;
 
       fetch(apiRequestUrl, { headers: { 'Accept': 'application/json' }}).then(response => {
-        if (response.status === 200) {
+        // when `storySlug === "/"`, the request will return multiple stories
+        if (response.status === 200 && storySlug !== "/") {
           response.json().then(body => {
             const link = document.createElement('a')
             link.setAttribute('target', '_blank')
