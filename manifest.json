@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Storyblok Tools",
+  "name": "Open on Storyblok",
   "version": "1.1",
   "icons": {
-    "48": "icons/logo-48.png",
-    "96": "icons/logo-96.png"
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
   },
 
   "permissions": ["activeTab", "storage"],
@@ -16,7 +16,7 @@
   },
 
   "action": {
-    "default_icon": "icons/logo-32.png",
+    "default_icon": "icons/icon-32.png",
     "default_title": "Storyblok Tools",
     "default_popup": "popup/index.html"
   },

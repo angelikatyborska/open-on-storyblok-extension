@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:export>
+      <bx:file format="png"/>
+    </bx:export>
+  </defs>
+  <rect style="stroke-width: 0px; fill: rgb(31, 31, 31); stroke: rgb(0, 0, 0);" x="10" y="0" width="180" height="180" rx="20" ry="20"/>
+  <path d="M 69.868 110.018 H 132.697 L 132.697 78.245 L 207.033 121.6165 L 132.697 164.988 L 132.697 133.215 H 69.868 V 110.018 Z" bx:shape="arrow 69.868 78.245 137.165 86.743 23.197 74.336 0 1@4f92ce5c" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" transform="matrix(0.738682, -0.674054, 0.674054, 0.738682, -84.247, 88.1557)"/>
+  <path d="M 40.912 -195.224 Q 40.912 -202.5 54.101 -195.224 L 78.256 -181.898 Q 91.445 -174.622 78.256 -174.622 L 54.101 -174.622 Q 40.912 -174.622 40.912 -181.898 Z" bx:shape="triangle 40.912 -202.5 50.533 27.878 0 0.261 1@3c68149b" style="stroke: rgb(0, 0, 0); stroke-width: 0px; fill: rgb(31, 31, 31);" transform="matrix(1, 0, 0, -1, 0, 0)"/>
+</svg>

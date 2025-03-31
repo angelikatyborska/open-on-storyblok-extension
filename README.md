@@ -1,4 +1,4 @@
-# Storyblok Tools Extension
+# Open on Storyblok
 
 This browser extension provides a link from your website's page to a Storyblok story for that page.
 
