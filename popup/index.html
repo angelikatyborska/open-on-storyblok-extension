@@ -1,81 +1,41 @@
 <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access your Storyblok Spaces</title>
+    <meta name="color-scheme" content="light dark" />
+    <link href="../style.css" rel="stylesheet" />
+  </head>
 
-  <style>
-    body {
-      font-family: -apple-system, Helvetica, Arial, sans;
-      font-size: 16px;
-      color: black;
-      background: white;
-    }
+  <body>
+    <header>
+      <pre id="current-tab-title">(loading title)</pre>
+      <pre id="current-tab-slug">(loading slug)</pre>
+    </header>
+    <main>
+    <table>
+      <caption><h1>Your Spaces</h1></caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">ID</th>
+          <th scope="col">Link</th>
+        </tr>
+      </thead>
+      <tbody id="spaces"></tbody>
+    </table>
+    <p>Add Storyblok spaces in the <a href="../options/index.html" target="_blank">Extension Options</a>.</p>
+    <template id="space">
+      <tr>
+        <th scope="row" class="space-name"></th>
+        <td class="space-id"></td>
+        <td class="story-link-wrapper">(loading...)</td>
+      </tr>
+    </template>
+    <template id="no-spaces"></template>
+  </body>
 
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: black;
-        color: white;
-      }
-    }
-
-    a, a:visited, a:hover {
-      color: inherit;
-    }
-
-    h1 {
-      font-size: 26px;
-    }
-
-    h2 {
-      font-size: 20px;
-    }
-
-    table {
-      border-collapse: collapse;
-      min-width: 20em;
-    }
-
-    th {
-      text-align: left;
-    }
-
-    td, th {
-      padding: 10px;
-      border: 1px solid gray;
-      white-space: nowrap;
-    }
-  </style>
-</head>
-
-<body>
-<h1 id="current-tab-slug">(loading...)</h1>
-<h2>Spaces</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Id</th>
-      <th>Link</th>
-    </tr>
-  </thead>
-  <tbody id="spaces"></tbody>
-</table>
-<template id="space">
-  <tr>
-    <td class="space-name"></td>
-    <td class="space-id"></td>
-    <td class="story-link-wrapper">(loading...)</td>
-  </tr>
-</template>
-<template id="no-spaces">
-  <tr>
-    <td colspan="3">
-      Go to extension settings and add some Storyblok spaces.
-    </td>
-  </tr>
-</template>
-</body>
-
-<script src="../browser-polyfill.min.js"></script>
-<script src="index.js"></script>
+  <script src="../browser-polyfill.min.js"></script>
+  <script src="index.js"></script>
 </html>
