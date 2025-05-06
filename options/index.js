@@ -9,6 +9,7 @@ function saveOptions(e) {
       name: formData.get(`spaces[${i}].name`),
       accessToken: formData.get(`spaces[${i}].accessToken`),
       rootStorySlug: formData.get(`spaces[${i}].rootStorySlug`),
+      spaceLegend: formData.get(`spaces[${i}].id`),
     }
   })
 
@@ -25,52 +26,56 @@ function saveOptions(e) {
     });
 
   setTimeout(() => {
-    saveStatus.textContent = ''
-  }, 3000)
+    saveStatus.textContent = 'Save all'
+  }, 1500)
 }
 
 function restoreOptions() {
   function appendSpace(space, index) {
     const wrapper = document.querySelector('#spaces');
-    const template = document.querySelector('#space-form-template')
+    const template = document.querySelector('#space-form-template');
     const clone = template.content.cloneNode(true);
 
-    const idInput = clone.querySelector("[name='id']")
+    const idInput = clone.querySelector("[name='id']");
     idInput.value = space.id || '';
-    idInput.name = `spaces[${index}].id`
+    idInput.name = `spaces[${index}].id`;
 
-    const nameInput = clone.querySelector("[name='name']")
+    const nameInput = clone.querySelector("[name='name']");
     nameInput.value = space.name || '';
     nameInput.name = `spaces[${index}].name`
 
-    const accessTokenInput = clone.querySelector("[name='accessToken']")
+    const accessTokenInput = clone.querySelector("[name='accessToken']");
     accessTokenInput.value = space.accessToken || '';
-    accessTokenInput.name = `spaces[${index}].accessToken`
+    accessTokenInput.name = `spaces[${index}].accessToken`;
 
-    const rootStorySlugInput = clone.querySelector("[name='rootStorySlug']")
+    const rootStorySlugInput = clone.querySelector("[name='rootStorySlug']");
     rootStorySlugInput.value = space.rootStorySlug || '';
-    rootStorySlugInput.name = `spaces[${index}].rootStorySlug`
+    rootStorySlugInput.name = `spaces[${index}].rootStorySlug`;
 
-    const deleteButton = clone.querySelector('.delete-space')
-    deleteButton.addEventListener('click', deleteSpace)
+    const deleteButton = clone.querySelector('.delete-space');
+    deleteButton.addEventListener('click', deleteSpace);
+
+    const legendId = clone.querySelector("#legend");
+    legendId.textContent = `Space #${idInput.value}`;
 
     wrapper.appendChild(clone);
+
   }
 
   function deleteSpace(event) {
-    const spaceNode = event.target.closest('.space')
-    spaceNode.parentElement.removeChild(spaceNode)
+    const spaceNode = event.target.closest('.space');
+    spaceNode.parentElement.removeChild(spaceNode);
   }
 
   function setCurrentChoice(result) {
     if (result?.spaces) {
       result.spaces.forEach((space, index) => {
-        appendSpace(space, index)
+        appendSpace(space, index);
       })
     }
 
-    const addSpaceButton = document.querySelector('#add-space')
-    addSpaceButton.addEventListener('click', addNewSpace)
+    const addSpaceButton = document.querySelector('#add-space');
+    addSpaceButton.addEventListener('click', addNewSpace);
   }
 
   function onError(error) {
@@ -80,7 +85,8 @@ function restoreOptions() {
   function addNewSpace() {
     const wrapper = document.querySelector('#spaces');
     const index = wrapper.children.length;
-    appendSpace({ id: '', name: '', accessToken: '' }, index)
+    appendSpace({ id: '', name: '', accessToken: '', spaceLegend: '' }, index);
+
   }
 
   let getting = browser.storage.sync.get("spaces");
@@ -88,4 +94,4 @@ function restoreOptions() {
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
-document.querySelector("form").addEventListener("submit", saveOptions)
+document.querySelector("form").addEventListener("submit", saveOptions);
