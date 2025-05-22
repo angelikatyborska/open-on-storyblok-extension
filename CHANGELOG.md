@@ -1,11 +1,10 @@
 # Changelog
 
-## 1.3 (2025-05-06)
+## 1.3 (2025-05-22)
 
 - Add styles.
 - Improve UX.
 - Add documentation.
-- Update graphic assets.
 
 ## 1.2 (2025-03-31)
 
