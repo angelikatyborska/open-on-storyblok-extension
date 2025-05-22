@@ -20,13 +20,13 @@ Download a [ZIP file](https://github.com/angelikatyborska/open-on-storyblok-exte
 Download a [ZIP file](https://github.com/angelikatyborska/open-on-storyblok-extension/archive/refs/heads/main.zip) of the repository, and follow [Apple's instructions to install an unsigned extension](https://developer.apple.com/documentation/safariservices/running-your-safari-web-extension#Temporarily-install-a-web-extension-folder-in-macOS-Safari).
 
 > [!IMPORTANT]
-> Safari removes temporary extensions after 24 hours or when you quit Safari.
+> Safari removes temporary extensions after 24 hours or when you quit the browser.
 
 ## Set up
 
-You can add, edit, and delete Storyblok spaces from the **Extension Options** page.
+You can add, edit, and delete Storyblok spaces from the **Extension Settings** page.
 
-To open the **Options** page, click the toolbar icon and click the link inside. Alternatively, right-click the toolbar icon and select **Options**.
+To open the **Settings** page, click the toolbar icon, then click the link inside. Alternatively, right-click the toolbar icon and select **Options**.
 
 ### Add a new space
 
