@@ -1,98 +1,46 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <style>
-    body {
-      font-family: -apple-system, Helvetica, Arial, sans;
-      font-size: 16px;
-      color: black;
-      background: white;
-      padding: 10px;
-    }
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Set up your Storyblok Spaces</title>
+		<meta name="color-scheme" content="light dark" />
+		<link href="../style.css" rel="stylesheet" />
+	</head>
 
-    @media (prefers-color-scheme: dark) {
-      body, input, button {
-        background: black;
-        color: white;
-      }
-
-      button, input {
-        border: 2px solid gray;
-      }
-    }
-
-    a, a:visited, a:hover {
-      color: inherit;
-    }
-
-    h1 {
-      font-size: 26px;
-    }
-
-    h2 {
-      font-size: 20px;
-    }
-
-    .spaces {
-      display: grid;
-      grid-row-gap: 25px;
-      margin-bottom: 50px;
-    }
-
-    label {
-      margin-top: 5px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .delete-space {
-      margin-top: 10px;
-    }
-
-    .buttons {
-      display: grid;
-      grid-row-gap: 25px;
-      justify-items: start;
-    }
-  </style>
-</head>
-
-<body>
-<form>
-  <h1>Spaces</h1>
-  <div id="spaces" class="spaces">
-  </div>
-
-  <template id="space-form-template">
-    <div class="space">
-      <div>
-        <label>Name <input type="text" name="name" /></label>
-      </div>
-      <div>
-        <label>ID <input type="text" name="id" /></label>
-      </div>
-      <div>
-        <label>Preview access token <input type="password" name="accessToken" /></label>
-      </div>
-      <div>
-        <label>Root story slug (with leading /)<input type="text" name="rootStorySlug" /></label>
-      </div>
-      <div>
-        <button class="delete-space">Delete</button>
-      </div>
-    </div>
-  </template>
-  <div class="buttons">
-    <button type="button" id="add-space">Add space</button>
-    <div>
-      <button type="submit">Save all</button>
-      <span id="save-status"></span>
-    </div>
-  </div>
-</form>
-
-<script src="../browser-polyfill.min.js"></script>
-<script src="index.js"></script>
-</body>
+	<body>
+		<header>
+			<h1>Your Storyblok Spaces</h1>
+			<p id="extension-details"></p>
+		</header>
+		<main>
+			<form>
+				<div id="spaces" class="spaces"></div>
+				<template id="space-form-template">
+					<fieldset class="space">
+						<legend id="legend">Space ID</legend>
+						<label>Space name
+							<input type="text" name="name"/>
+						</label>
+						<label>Space ID
+							<input type="text" inputmode="numeric" pattern="[0-9]{5,6}" name="id" title="A string of 5 or 6 digits"/>
+						</label>
+						<label>Preview access token
+							<input type="text" name="accessToken"/>
+						</label>
+						<label>Root story slug (with leading /)
+							<input type="text" name="rootStorySlug" pattern="^\/(.*)" title="The slug must start with /"/>
+						</label>
+						<button class="delete-space" aria-label="Delete space">Delete</button>
+					</fieldset>
+				</template>
+				<div class="buttons">
+					<button type="button" id="add-space">Add space</button>
+					<button type="submit" id="save-status">Save all</button>
+				</div>
+			</form>
+		</main>
+		<script src="../browser-polyfill.min.js"></script>
+		<script src="index.js"></script>
+	</body>
 </html>

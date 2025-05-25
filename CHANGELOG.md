@@ -1,4 +1,10 @@
-# Chanelog
+# Changelog
+
+## 1.3 (2025-05-22)
+
+- Add styles.
+- Improve UX.
+- Add documentation.
 
 ## 1.2 (2025-03-31)
 
