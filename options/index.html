@@ -18,20 +18,20 @@
 				<div id="spaces" class="spaces"></div>
 				<template id="space-form-template">
 					<fieldset class="space">
-						<legend id="legend">Space #</legend>
+						<legend id="legend">Space ID</legend>
 						<label>Space name
 							<input type="text" name="name"/>
 						</label>
 						<label>Space ID
-							<input type="text" inputmode="numeric" pattern="[0-9]{5,6}" name="id"/>
+							<input type="text" inputmode="numeric" pattern="[0-9]{5,6}" name="id" title="A string of 5 or 6 digits"/>
 						</label>
 						<label>Preview access token
 							<input type="text" name="accessToken"/>
 						</label>
 						<label>Root story slug (with leading /)
-							<input type="text" name="rootStorySlug"/>
+							<input type="text" name="rootStorySlug" pattern="^\/(.*)" title="The slug must start with /"/>
 						</label>
-						<button class="delete-space">Delete</button>
+						<button class="delete-space" aria-label="Delete space">Delete</button>
 					</fieldset>
 				</template>
 				<div class="buttons">
